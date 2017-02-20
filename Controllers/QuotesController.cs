@@ -2,38 +2,31 @@ using Microsoft.AspNetCore.Mvc;
 using FisherInsuranceApi.Data;
 using FisherInsuranceApi.Models;
 
-[Route("api/claims")] 
-    public class ClaimController : Controller
+[Route("api/quotes")] 
+    public class QuoteController : Controller 
     {  
-         // POST api/claims
-
-        [HttpGet]
-         public IActionResult GetCaims()
-          {  
-           return Ok(db.RetrieveAllClaims);
-         }
-
+         // POST api/auto/quotes 
         [HttpPost] 
-        public IActionResult Post([FromBody] Claim claim) 
+        public IActionResult Post([FromBody] Quote quote) 
         { 
             //return Created("", value); 
-            return Ok(db.CreateClaim(claim));
+            return Ok(db.CreateQuote(quote));
         }  
 
-         // GET api/cliam
+         // GET api/auto/quotes/5 
         [HttpGet("{id}")] 
         public IActionResult Get(int id) 
         { 
             //return Ok("The id is: " + id); 
-            return Ok(db.RetrieveClaim(id));
+            return Ok(db.RetrieveQuote(id));
         } 
 
            // PUT api/auto/quotes/id 
         [HttpPut("{id}")] 
-        public IActionResult Put([FromBody]Claim claim) 
+        public IActionResult Put([FromBody]Quote quote) 
         { 
             //return NoContent(); 
-            return Ok(db.UpdateClaim(claim));
+            return Ok(db.UpdateQuote(quote));
         }
 
         // DELETE api/auto/quotes/id 
@@ -41,14 +34,20 @@ using FisherInsuranceApi.Models;
         public IActionResult  Delete(int id) 
         { 
             //return Delete(id); 
-            db.DeleteClaim(id);
+            db.DeleteQuote(id);
             return Ok();
         }
 
         private IMemoryStore db;
-        public ClaimController(IMemoryStore repo) 
+        public QuoteController(IMemoryStore repo) 
         {
               db = repo;
         }
+
+    [HttpGet]
+     public IActionResult GetQuotes()
+      {  
+          return Ok(db.RetrieveAllQuotes);
+     }
 
     } 
