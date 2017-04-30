@@ -1,31 +1,46 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser'; 
-import { HttpModule } from '@angular/http'; 
-import 'rxjs/Rx'; 
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import 'rxjs/Rx';
 
-
-// import our application component 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { NavBarComponent } from './components/navbar/navbar.Component';
+import { NavBarComponent } from './components/navbar/navbar.component';
+import { LoginComponent } from './components/login/login.component';
+import { ClaimsComponent } from './components/claims/claims.component';
+import { QuotesComponent } from './components/quotes/quotes.component';
 
- @NgModule({     
-     declarations: [    
-          AppComponent,        
-          HomeComponent,
-          NavBarComponent
-     ],     
-     imports: [      
-         BrowserModule,     
-         HttpModule    
-     ],    
-     
-     providers: [
+import { AppRouting } from './app.routing';
+import { AuthHttp } from "./auth.http";
+import { AuthService } from "./auth.service";
 
-    ],     
-       bootstrap: [  
-          AppComponent    
-     ], 
-}) 
 
+
+@NgModule({
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        NavBarComponent,
+        LoginComponent,
+        ClaimsComponent,
+        QuotesComponent
+    ],
+    imports: [
+        BrowserModule,
+        HttpModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        AppRouting
+    ],
+    providers: [
+        AuthService,
+        AuthHttp
+    ],
+    bootstrap: [
+        AppComponent
+    ],
+})
 export class AppModule { }
